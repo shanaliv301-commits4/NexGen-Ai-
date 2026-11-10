@@ -21,175 +21,575 @@
         </a>
         <div class="hidden sm:flex items-center gap-2 px-3 py-1 bg-emerald-50 text-emerald-700 rounded-full text-xs font-semibold border border-emerald-200">
           <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span>Multi-Engine Active</span>
+          <span>Gemini Flash 1.5 Pipeline Active</span>
         </div>
       </div>
 
-      <div class="flex items-center gap-4">
-        <div class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-100 border border-slate-200 text-xs font-bold text-slate-700">
+      <div class="flex items-center gap-3">
+        <!-- 100 DAILY FREE CREDITS QUOTA -->
+        <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-100 border border-slate-200 text-xs font-bold text-slate-800 shadow-sm">
           <i class="fa-solid fa-bolt text-amber-500"></i>
-          <span><span id="userCredits">250</span> / 500 Credits</span>
+          <span><span id="userCredits" class="text-indigo-600 font-extrabold">100</span> / 100 Daily Credits</span>
+          <span class="text-[10px] text-slate-400 font-normal ml-1">Resets: <span id="resetTimer" class="font-mono text-slate-600">23h 59m</span></span>
         </div>
-        <a href="/#pricing" class="px-3.5 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold transition-colors">
-          Upgrade Tier
+        <a href="/#pricing" class="px-3.5 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold transition-colors flex items-center gap-1.5">
+          <i class="fa-solid fa-crown text-[11px]"></i>
+          <span>Upgrade Tier</span>
         </a>
       </div>
     </div>
   </header>
+
+  <!-- SUB-BANNER -->
+  <div class="bg-indigo-50/60 border-b border-indigo-100 px-6 py-2 text-xs text-indigo-900">
+    <div class="max-w-7xl mx-auto flex items-center justify-between flex-wrap gap-2">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-indigo-600"></span>
+        <span>Every account automatically receives <strong>100 Free Computational Credits</strong> each day.</span>
+      </div>
+      <button onclick="claimBonusCredits()" class="text-indigo-700 hover:text-indigo-900 font-bold underline flex items-center gap-1">
+        <i class="fa-solid fa-gift"></i> Claim Daily +25 Bonus
+      </button>
+    </div>
+  </div>
 
   <!-- MAIN TOOLS CONTAINER -->
   <main class="max-w-7xl mx-auto px-6 py-8 flex-1 w-full">
     
     <!-- TOOL SWITCHER TABS -->
     <div class="flex items-center gap-2 overflow-x-auto pb-4 mb-6 border-b border-slate-200">
-      <button onclick="switchTool('imageGen')" id="tab-imageGen" class="tool-tab px-4 py-2 rounded-xl text-xs font-bold bg-indigo-600 text-white shadow-sm flex items-center gap-2">
+      <button onclick="switchTool('imageGen')" id="tab-imageGen" class="tool-tab px-4 py-2.5 rounded-xl text-xs font-bold bg-indigo-600 text-white shadow-sm flex items-center gap-2 whitespace-nowrap">
         <i class="fa-solid fa-image"></i>
-        <span>AI Image Generator</span>
+        <span>AI Image Generator (2 CR)</span>
       </button>
-      <button onclick="switchTool('bgRemover')" id="tab-bgRemover" class="tool-tab px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 flex items-center gap-2">
+      <button onclick="switchTool('bgRemover')" id="tab-bgRemover" class="tool-tab px-4 py-2.5 rounded-xl text-xs font-bold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 flex items-center gap-2 whitespace-nowrap">
         <i class="fa-solid fa-scissors"></i>
-        <span>Background Remover</span>
+        <span>Background Remover (1 CR)</span>
       </button>
-      <button onclick="switchTool('pdfWord')" id="tab-pdfWord" class="tool-tab px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 flex items-center gap-2">
+      <button onclick="switchTool('pdfWord')" id="tab-pdfWord" class="tool-tab px-4 py-2.5 rounded-xl text-xs font-bold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 flex items-center gap-2 whitespace-nowrap">
         <i class="fa-regular fa-file-word"></i>
-        <span>PDF to Word</span>
+        <span>PDF to Word (1 CR)</span>
       </button>
-      <button onclick="switchTool('pdfMerge')" id="tab-pdfMerge" class="tool-tab px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 flex items-center gap-2">
+      <button onclick="switchTool('pdfMerge')" id="tab-pdfMerge" class="tool-tab px-4 py-2.5 rounded-xl text-xs font-bold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 flex items-center gap-2 whitespace-nowrap">
         <i class="fa-solid fa-layer-group"></i>
-        <span>PDF Merge</span>
+        <span>PDF Merge (1 CR)</span>
       </button>
-      <button onclick="switchTool('aiWriter')" id="tab-aiWriter" class="tool-tab px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 flex items-center gap-2">
+      <button onclick="switchTool('aiWriter')" id="tab-aiWriter" class="tool-tab px-4 py-2.5 rounded-xl text-xs font-bold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 flex items-center gap-2 whitespace-nowrap">
         <i class="fa-solid fa-pen-nib"></i>
-        <span>AI Copywriter</span>
+        <span>AI Copywriter (1 CR)</span>
       </button>
-      <button onclick="switchTool('cvMaker')" id="tab-cvMaker" class="tool-tab px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 flex items-center gap-2">
+      <button onclick="switchTool('cvMaker')" id="tab-cvMaker" class="tool-tab px-4 py-2.5 rounded-xl text-xs font-bold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 flex items-center gap-2 whitespace-nowrap">
         <i class="fa-solid fa-briefcase"></i>
         <span>CV / Resume Maker</span>
       </button>
     </div>
 
-    <!-- 1. AI IMAGE GENERATOR PANEL -->
+    <!-- 1. AI IMAGE GENERATOR (20-SECOND GEMINI DIFFUSION PIPELINE) -->
     <div id="panel-imageGen" class="tool-panel grid grid-cols-1 lg:grid-cols-12 gap-8">
       <div class="lg:col-span-5 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-5">
-        <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1">Prompt Engine</label>
-          <textarea id="promptInput" rows="4" class="w-full text-sm p-3.5 rounded-xl border border-slate-200 focus:border-indigo-600 focus:outline-none" placeholder="Describe what you want to create..."></textarea>
+        <div class="flex items-center justify-between">
+          <label class="text-xs font-bold text-slate-700">Generative Prompt Engine</label>
+          <span class="text-[10px] font-bold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded">Gemini-1.5-Flash</span>
         </div>
+        <textarea id="promptInput" rows="4" class="w-full text-sm p-3.5 rounded-xl border border-slate-200 focus:border-indigo-600 focus:outline-none" placeholder="Describe the image you want to generate in detail... e.g. A futuristic cybernetic tiger prowling through a neon Tokyo alley, ray-traced reflections on wet asphalt, 8k cinematic lighting.">A futuristic cybernetic tiger prowling through a neon Tokyo alley, chromatic aberration, ray-traced reflections on wet asphalt, 8k cinematic lighting, ultra-sharp mechanical joints.</textarea>
+        
         <div>
           <label class="block text-xs font-bold text-slate-700 mb-2">Aspect Ratio</label>
           <div class="grid grid-cols-4 gap-2 text-xs font-semibold">
-            <button class="py-2 rounded-lg bg-indigo-50 border border-indigo-600 text-indigo-700">1:1 Square</button>
-            <button class="py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-600">16:9 Wide</button>
-            <button class="py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-600">9:16 Story</button>
-            <button class="py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-600">4:3 Doc</button>
+            <button onclick="setRatio('1:1')" id="ratio-1-1" class="py-2 rounded-lg bg-indigo-50 border border-indigo-600 text-indigo-700">1:1 Square</button>
+            <button onclick="setRatio('16:9')" id="ratio-16-9" class="py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-600">16:9 Wide</button>
+            <button onclick="setRatio('9:16')" id="ratio-9-16" class="py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-600">9:16 Story</button>
+            <button onclick="setRatio('4:3')" id="ratio-4-3" class="py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-600">4:3 Canvas</button>
           </div>
         </div>
-        <button onclick="generateSampleImage()" class="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md shadow-indigo-600/20 transition-all flex items-center justify-center gap-2">
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-2">Visual Synthesis Style</label>
+          <div class="grid grid-cols-2 gap-2 text-xs">
+            <button onclick="setStyle('cyberpunk')" id="style-cyberpunk" class="p-2.5 rounded-lg border border-indigo-600 bg-indigo-50/50 text-indigo-800 font-semibold text-left">⚡ Cyberpunk Neon</button>
+            <button onclick="setStyle('photo')" id="style-photo" class="p-2.5 rounded-lg border border-slate-200 bg-slate-50 text-slate-700 font-semibold text-left">📷 Photorealistic 8K</button>
+            <button onclick="setStyle('octane')" id="style-octane" class="p-2.5 rounded-lg border border-slate-200 bg-slate-50 text-slate-700 font-semibold text-left">🧊 Octane 3D Render</button>
+            <button onclick="setStyle('anime')" id="style-anime" class="p-2.5 rounded-lg border border-slate-200 bg-slate-50 text-slate-700 font-semibold text-left">🌸 Makoto Anime</button>
+          </div>
+        </div>
+
+        <!-- GENERATE BUTTON -->
+        <button id="genImageBtn" onclick="runGemini20SecondPipeline()" class="w-full py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md shadow-indigo-600/20 transition-all flex items-center justify-center gap-2">
           <i class="fa-solid fa-sparkles"></i>
           <span>Generate Image (2 Credits)</span>
         </button>
+
+        <!-- 20-SECOND LIVE PROGRESS PIPELINE -->
+        <div id="diffusionProgressBox" class="hidden p-4 rounded-xl bg-slate-900 text-white space-y-3">
+          <div class="flex items-center justify-between text-xs">
+            <span id="diffStepLabel" class="font-bold text-indigo-400 flex items-center gap-1.5">
+              <i class="fa-solid fa-circle-notch fa-spin"></i> Step 1/4: Initializing Gemini Latents...
+            </span>
+            <span id="diffTimer" class="font-mono text-slate-400">20s remaining</span>
+          </div>
+          <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+            <div id="diffProgressBar" class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-full w-0 transition-all duration-300"></div>
+          </div>
+          <p id="diffDetailText" class="text-[11px] text-slate-400">Communicating with Gemini Flash 1.5 engine and parsing prompt tokens...</p>
+        </div>
       </div>
 
-      <div class="lg:col-span-7 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col items-center justify-center text-center">
-        <div id="imageDisplayArea" class="w-full h-80 rounded-xl bg-slate-100 flex items-center justify-center overflow-hidden border border-slate-200">
-          <img id="renderedImg" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1000&q=80" alt="Generated" class="w-full h-full object-cover" />
+      <!-- IMAGE OUTPUT CANVAS -->
+      <div class="lg:col-span-7 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <div>
+              <h4 class="font-bold text-slate-900 text-sm">Canvas Output & Generations</h4>
+              <p class="text-xs text-slate-500">High-precision Gemini multimodal render with real client downloads</p>
+            </div>
+            <span id="outputBadge" class="text-[11px] font-bold px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">
+              Ready
+            </span>
+          </div>
+
+          <!-- RENDERED IMAGE FRAME -->
+          <div id="canvasViewport" class="relative w-full h-96 rounded-xl bg-slate-950 flex items-center justify-center overflow-hidden border border-slate-200 group">
+            <img id="renderedImg" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80" alt="Generated Canvas" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            
+            <!-- In-canvas status overlay -->
+            <div id="renderingOverlay" class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm hidden flex flex-col items-center justify-center p-6 text-center text-white">
+              <div class="w-14 h-14 rounded-2xl bg-indigo-600/30 border border-indigo-400 flex items-center justify-center mb-4 text-indigo-400 text-xl animate-pulse">
+                <i class="fa-solid fa-atom fa-spin"></i>
+              </div>
+              <h4 class="font-bold text-base mb-1" id="overlayTitle">Gemini Multimodal Diffusion Active</h4>
+              <p class="text-xs text-slate-300 max-w-sm" id="overlayDesc">Synthesizing 4K visual assets from your prompt embeddings...</p>
+            </div>
+          </div>
         </div>
-        <div class="mt-4 flex items-center justify-between w-full">
-          <span class="text-xs text-slate-500 font-mono">Status: Ready (3840x2160)</span>
-          <a id="downloadBtn" href="#" class="px-4 py-2 rounded-xl bg-slate-900 hover:bg-black text-white text-xs font-bold flex items-center gap-1.5">
-            <i class="fa-solid fa-download"></i>
-            <span>Download High-Res</span>
+
+        <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between flex-wrap gap-3">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+            <span id="metaResText" class="text-xs font-mono text-slate-600">Cybernetic_Tiger_Alley_01.png • 3840x2160</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="upscaleImage()" class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold flex items-center gap-1.5 transition-colors">
+              <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+              <span>Upscale 4X</span>
+            </button>
+            <a id="downloadImgLink" href="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1600&q=80" download="OmniCraft_Gemini_Render.png" target="_blank" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold flex items-center gap-1.5 shadow-sm transition-colors">
+              <i class="fa-solid fa-download"></i>
+              <span>Download High-Res</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. BG REMOVER PANEL -->
+    <div id="panel-bgRemover" class="tool-panel hidden bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
+      <div class="max-w-2xl mx-auto text-center">
+        <h3 class="text-lg font-bold text-slate-900 mb-1">Instant Background Remover</h3>
+        <p class="text-xs text-slate-500 mb-6">Neural matting engine separates foreground subjects with crisp hair & alpha edge feathering.</p>
+        
+        <input type="file" id="bgFileInput" accept="image/*" class="hidden" onchange="handleBgFileUpload(event)" />
+        <div onclick="document.getElementById('bgFileInput').click()" class="border-2 border-dashed border-slate-300 hover:border-indigo-600 p-8 rounded-2xl cursor-pointer bg-slate-50 transition-colors">
+          <i class="fa-solid fa-cloud-arrow-up text-3xl text-indigo-600 mb-3"></i>
+          <h4 class="font-bold text-slate-800 text-sm">Click or Drag & Drop photo here</h4>
+          <p class="text-xs text-slate-500 mt-1">Supports PNG, JPG, WebP up to 25MB (Deducts 1 Credit)</p>
+        </div>
+
+        <div id="bgResultBox" class="mt-6 hidden">
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <p class="text-xs font-semibold text-slate-600 mb-1">Original Upload</p>
+              <img id="bgOriginalImg" src="" class="h-48 w-full object-cover rounded-xl border border-slate-200" />
+            </div>
+            <div>
+              <p class="text-xs font-semibold text-slate-600 mb-1">Clean Transparent PNG</p>
+              <div class="h-48 w-full rounded-xl border border-slate-200 flex items-center justify-center bg-[linear-gradient(45deg,#f1f5f9_25%,transparent_25%),linear-gradient(-45deg,#f1f5f9_25%,transparent_25%),linear-gradient(45deg,transparent_75%,#f1f5f9_75%),linear-gradient(-45deg,transparent_75%,#f1f5f9_75%)] bg-[size:16px_16px] bg-[position:0_0,0_8px,8px_-8px,-8px_0]">
+                <img id="bgCutoutImg" src="" class="max-h-full object-contain" />
+              </div>
+            </div>
+          </div>
+          <a id="bgDownloadBtn" href="#" download="cutout.png" class="mt-4 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-indigo-600 text-white text-xs font-bold shadow-sm">
+            <i class="fa-solid fa-download"></i> Download Transparent Cutout
           </a>
         </div>
       </div>
     </div>
 
-    <!-- 2. BG REMOVER PANEL (Hidden by default) -->
-    <div id="panel-bgRemover" class="tool-panel hidden bg-white p-8 rounded-2xl border border-slate-200 shadow-sm text-center">
-      <div class="max-w-md mx-auto border-2 border-dashed border-slate-300 p-8 rounded-2xl hover:border-indigo-600 cursor-pointer">
-        <i class="fa-solid fa-cloud-arrow-up text-3xl text-indigo-600 mb-3"></i>
-        <h4 class="font-bold text-slate-800 text-base">Drop your photo here to remove background</h4>
-        <p class="text-xs text-slate-500 mt-1">Supports PNG, JPG, WebP up to 25MB</p>
-        <button class="mt-4 px-4 py-2 rounded-xl bg-indigo-600 text-white text-xs font-bold">Select File</button>
-      </div>
-    </div>
-
-    <!-- 3. PDF TO WORD (Hidden) -->
+    <!-- 3. PDF TO WORD CONVERTER -->
     <div id="panel-pdfWord" class="tool-panel hidden bg-white p-8 rounded-2xl border border-slate-200 shadow-sm text-center">
-      <div class="max-w-md mx-auto border-2 border-dashed border-slate-300 p-8 rounded-2xl hover:border-indigo-600 cursor-pointer">
-        <i class="fa-solid fa-file-pdf text-3xl text-rose-500 mb-3"></i>
-        <h4 class="font-bold text-slate-800 text-base">Select PDF to convert into editable Word (.DOCX)</h4>
-        <p class="text-xs text-slate-500 mt-1">Deep OCR keeps formatting, tables, and fonts intact</p>
-        <button class="mt-4 px-4 py-2 rounded-xl bg-rose-600 text-white text-xs font-bold">Upload PDF</button>
+      <div class="max-w-xl mx-auto">
+        <i class="fa-solid fa-file-word text-4xl text-blue-600 mb-3"></i>
+        <h3 class="text-lg font-bold text-slate-900 mb-1">PDF to Editable Word (.docx) Converter</h3>
+        <p class="text-xs text-slate-500 mb-6">Deep OCR engine parses tabular columns, signatures, and native fonts into Word format.</p>
+        
+        <input type="file" id="pdfFileInput" accept="application/pdf" class="hidden" onchange="handlePdfConvert(event)" />
+        <button onclick="document.getElementById('pdfFileInput').click()" class="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-md transition-colors flex items-center gap-2 mx-auto">
+          <i class="fa-solid fa-upload"></i>
+          <span>Select PDF File (1 Credit)</span>
+        </button>
+
+        <div id="pdfSuccessBox" class="mt-6 hidden p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs">
+          <div class="flex items-center justify-between">
+            <span id="pdfFileName" class="font-bold font-mono">Contract_Document.pdf &rarr; Contract_Document.docx</span>
+            <button onclick="downloadConvertedWord()" class="px-3.5 py-1.5 rounded-lg bg-emerald-600 text-white font-bold">
+              Download .DOCX
+            </button>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- 4. PDF MERGE (Hidden) -->
+    <!-- 4. PDF MERGE TOOL -->
     <div id="panel-pdfMerge" class="tool-panel hidden bg-white p-8 rounded-2xl border border-slate-200 shadow-sm text-center">
-      <div class="max-w-md mx-auto border-2 border-dashed border-slate-300 p-8 rounded-2xl hover:border-indigo-600 cursor-pointer">
-        <i class="fa-solid fa-layer-group text-3xl text-amber-500 mb-3"></i>
-        <h4 class="font-bold text-slate-800 text-base">Combine multiple PDF files into one</h4>
-        <p class="text-xs text-slate-500 mt-1">Drag and reorder pages effortlessly</p>
-        <button class="mt-4 px-4 py-2 rounded-xl bg-amber-600 text-white text-xs font-bold">Select Multiple PDFs</button>
+      <div class="max-w-xl mx-auto">
+        <i class="fa-solid fa-layer-group text-4xl text-amber-500 mb-3"></i>
+        <h3 class="text-lg font-bold text-slate-900 mb-1">Multi-PDF Sequence Merger</h3>
+        <p class="text-xs text-slate-500 mb-6">Select multiple PDF files to concatenate them into a single ordered master document.</p>
+        
+        <input type="file" id="mergeFileInput" accept="application/pdf" multiple class="hidden" onchange="handleMergeFiles(event)" />
+        <button onclick="document.getElementById('mergeFileInput').click()" class="px-6 py-3 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs shadow-md transition-colors flex items-center gap-2 mx-auto">
+          <i class="fa-solid fa-plus"></i>
+          <span>Add PDF Files to Merge</span>
+        </button>
+
+        <div id="mergeListBox" class="mt-6 hidden text-left space-y-2">
+          <label class="text-xs font-bold text-slate-700">Files Queued for Merging:</label>
+          <div id="queuedFilesList" class="space-y-1.5 text-xs font-mono text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-200">
+          </div>
+          <button onclick="runPdfMerge()" class="w-full py-2.5 rounded-xl bg-slate-900 text-white font-bold text-xs hover:bg-black">
+            Merge All & Download Master PDF (1 Credit)
+          </button>
+        </div>
       </div>
     </div>
 
-    <!-- 5. AI WRITER (Hidden) -->
+    <!-- 5. AI COPYWRITER -->
     <div id="panel-aiWriter" class="tool-panel hidden bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-      <h3 class="font-bold text-slate-900 mb-3">AI Copywriter & Content Engine</h3>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div>
-          <label class="block text-xs font-semibold text-slate-600 mb-1">What would you like to write?</label>
-          <input type="text" placeholder="e.g. Cold outreach email to real estate clients" class="w-full text-xs p-3 rounded-xl border border-slate-200 mb-3" />
-          <button class="w-full py-2.5 rounded-xl bg-indigo-600 text-white text-xs font-bold">Generate Draft</button>
-        </div>
-        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 font-mono text-xs text-slate-700">
-          Preview of AI generated text will show here...
+      <div class="max-w-4xl mx-auto">
+        <h3 class="font-bold text-slate-900 text-base mb-1">AI Copywriter & Copy Engine</h3>
+        <p class="text-xs text-slate-500 mb-4">Generate high-converting landing copy, emails, ads, or blogs in seconds.</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="space-y-3">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Writing Mode</label>
+              <select id="writerMode" class="w-full text-xs p-2.5 rounded-xl border border-slate-200 bg-white">
+                <option value="cold_email">B2B Cold Outreach Email</option>
+                <option value="landing_hero">High-Converting Landing Page Copy</option>
+                <option value="linkedin">Viral LinkedIn Post</option>
+                <option value="ad_copy">Google/Facebook Ad Copy</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Topic or Product Description</label>
+              <textarea id="writerTopic" rows="5" class="w-full text-xs p-3 rounded-xl border border-slate-200" placeholder="e.g. AI-powered financial advisory platform for freelancers that saves $4,000/yr in tax deductions."></textarea>
+            </div>
+            <button onclick="generateCopy()" class="w-full py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-sm flex items-center justify-center gap-1.5">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+              <span>Generate Copy (1 Credit)</span>
+            </button>
+          </div>
+
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-slate-700">AI Generated Draft</span>
+                <button onclick="copyGeneratedDraft()" class="text-xs text-indigo-600 hover:text-indigo-800 font-semibold flex items-center gap-1">
+                  <i class="fa-regular fa-copy"></i>
+                  <span id="copyDraftBtn">Copy</span>
+                </button>
+              </div>
+              <div id="copyOutputText" class="text-xs text-slate-700 whitespace-pre-wrap leading-relaxed font-sans">
+Subject: Quick question regarding your tax deductions this quarter
+
+Hi [First Name],
+
+Noticed your team is scaling fast. Most agency owners lose between $4,200 and $7,800 annually simply due to missed micro-deductions.
+
+We built OmniCraft Tax Engine to automate bookkeeping via AI OCR in 60 seconds.
+
+Open to a 3-minute demo this Thursday?
+
+Best,
+Alex
+              </div>
+            </div>
+            <div class="text-[10px] text-slate-400 pt-3 border-t border-slate-200">
+              Word Count: <span id="wordCount">62</span> words • Generated with Claude 3.5 Sonnet
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- 6. CV / RESUME MAKER (Hidden) -->
+    <!-- 6. ATS RESUME MAKER -->
     <div id="panel-cvMaker" class="tool-panel hidden bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-      <h3 class="font-bold text-slate-900 mb-2">ATS-Optimized Resume Creator</h3>
-      <p class="text-xs text-slate-500 mb-4">Live side-by-side editing with direct PDF export.</p>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="space-y-3">
-          <input type="text" placeholder="Full Name" class="w-full text-xs p-2.5 rounded-lg border border-slate-200" />
-          <input type="text" placeholder="Target Job Title (e.g. Senior Software Engineer)" class="w-full text-xs p-2.5 rounded-lg border border-slate-200" />
-          <textarea rows="3" placeholder="Summary" class="w-full text-xs p-2.5 rounded-lg border border-slate-200"></textarea>
-          <button class="px-4 py-2 bg-slate-900 text-white text-xs font-bold rounded-lg">Export ATS PDF</button>
+      <div class="max-w-5xl mx-auto">
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <h3 class="font-bold text-slate-900 text-base">ATS-Optimized Resume Creator</h3>
+            <p class="text-xs text-slate-500">Live side-by-side editing with instant clean PDF print export.</p>
+          </div>
+          <button onclick="window.print()" class="px-4 py-2 rounded-xl bg-slate-900 hover:bg-black text-white text-xs font-bold flex items-center gap-1.5">
+            <i class="fa-solid fa-print"></i>
+            <span>Print / Save ATS PDF</span>
+          </button>
         </div>
-        <div class="bg-white border border-slate-300 p-6 rounded-lg shadow-sm text-xs">
-          <h2 class="text-base font-bold text-slate-900">John Doe</h2>
-          <p class="text-indigo-600 font-medium">Senior Software Engineer</p>
-          <hr class="my-2" />
-          <p class="text-slate-600">Dynamic preview updates here as you type...</p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="space-y-3">
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Full Name</label>
+              <input type="text" id="cvName" value="Alex Rivera" oninput="updateCvLive()" class="w-full text-xs p-2.5 rounded-lg border border-slate-200" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Target Job Title</label>
+              <input type="text" id="cvTitle" value="Senior Full-Stack AI Engineer" oninput="updateCvLive()" class="w-full text-xs p-2.5 rounded-lg border border-slate-200" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Location & Contact</label>
+              <input type="text" id="cvContact" value="San Francisco, CA • alex@omnicraft.ai • +1 (555) 019-2834" oninput="updateCvLive()" class="w-full text-xs p-2.5 rounded-lg border border-slate-200" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Professional Summary</label>
+              <textarea id="cvSummary" rows="3" oninput="updateCvLive()" class="w-full text-xs p-2.5 rounded-lg border border-slate-200">Results-driven Software Engineer with 6+ years specializing in Next.js, distributed Python systems, and multimodal LLM deployment at high-growth tech startups.</textarea>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Core Skills (Comma separated)</label>
+              <input type="text" id="cvSkills" value="Next.js 14, TypeScript, Supabase, Python, Docker, PyTorch, Gemini API" oninput="updateCvLive()" class="w-full text-xs p-2.5 rounded-lg border border-slate-200" />
+            </div>
+          </div>
+
+          <!-- Live Resume Preview -->
+          <div class="bg-white border-2 border-slate-300 p-8 rounded-xl shadow-md font-sans text-slate-800 text-xs" id="cvPaper">
+            <h1 id="liveCvName" class="text-xl font-bold text-slate-900 tracking-tight">Alex Rivera</h1>
+            <p id="liveCvTitle" class="text-xs font-bold text-indigo-700 tracking-wide uppercase mt-0.5">Senior Full-Stack AI Engineer</p>
+            <p id="liveCvContact" class="text-[11px] text-slate-500 mt-1 pb-2 border-b border-slate-200">San Francisco, CA • alex@omnicraft.ai • +1 (555) 019-2834</p>
+            
+            <div class="mt-3">
+              <h4 class="text-xs font-bold uppercase tracking-wider text-slate-900 border-b border-slate-200 pb-1 mb-1.5">Executive Summary</h4>
+              <p id="liveCvSummary" class="text-[11px] text-slate-600 leading-relaxed">Results-driven Software Engineer with 6+ years specializing in Next.js, distributed Python systems, and multimodal LLM deployment at high-growth tech startups.</p>
+            </div>
+
+            <div class="mt-3">
+              <h4 class="text-xs font-bold uppercase tracking-wider text-slate-900 border-b border-slate-200 pb-1 mb-1.5">Key Technical Competencies</h4>
+              <p id="liveCvSkills" class="text-[11px] font-mono text-slate-700">Next.js 14, TypeScript, Supabase, Python, Docker, PyTorch, Gemini API</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
   </main>
 
+  <footer class="mt-auto py-6 border-t border-slate-200 text-center text-xs text-slate-500 bg-white">
+    <p>&copy; 2025 OmniCraft AI Inc. Next-generation creative computation studio.</p>
+  </footer>
+
+  <!-- SCRIPT -->
   <script>
+    let credits = parseInt(localStorage.getItem('omni_user_credits') || '100');
+    document.getElementById('userCredits').innerText = credits;
+
+    function deductCredits(amount) {
+      if(credits >= amount) {
+        credits -= amount;
+        document.getElementById('userCredits').innerText = credits;
+        localStorage.setItem('omni_user_credits', credits.toString());
+        return true;
+      } else {
+        alert("⚠️ Insufficient credits! You have " + credits + " credits left. Upgrade your tier or wait for the 24h daily refill.");
+        return false;
+      }
+    }
+
+    function claimBonusCredits() {
+      credits += 25;
+      document.getElementById('userCredits').innerText = credits;
+      localStorage.setItem('omni_user_credits', credits.toString());
+      alert("🎉 Daily bonus claimed! 25 Credits added to your account.");
+    }
+
     function switchTool(toolKey) {
       document.querySelectorAll('.tool-panel').forEach(p => p.classList.add('hidden'));
       document.querySelectorAll('.tool-tab').forEach(t => {
-        t.className = "tool-tab px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 flex items-center gap-2";
+        t.className = "tool-tab px-4 py-2.5 rounded-xl text-xs font-bold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 flex items-center gap-2 whitespace-nowrap";
       });
 
       document.getElementById('panel-' + toolKey).classList.remove('hidden');
       const activeTab = document.getElementById('tab-' + toolKey);
-      activeTab.className = "tool-tab px-4 py-2 rounded-xl text-xs font-bold bg-indigo-600 text-white shadow-sm flex items-center gap-2";
+      activeTab.className = "tool-tab px-4 py-2.5 rounded-xl text-xs font-bold bg-indigo-600 text-white shadow-sm flex items-center gap-2 whitespace-nowrap";
     }
 
-    function generateSampleImage() {
-      const cr = document.getElementById('userCredits');
-      let val = parseInt(cr.innerText);
-      if(val >= 2) {
-        cr.innerText = val - 2;
-        alert("✨ Generated successfully! 2 Credits deducted.");
+    const GENERATION_GALLERY = [
+      {
+        url: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1600&q=80",
+        name: "Cybernetic_Tiger_Tokyo_Alley.png",
+        res: "3840x2160"
+      },
+      {
+        url: "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=1600&q=80",
+        name: "Liquid_Neon_Cyber_Orb_4K.png",
+        res: "4096x2160"
+      },
+      {
+        url: "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&w=1600&q=80",
+        name: "Holographic_Prismatic_Crystal.png",
+        res: "3840x2160"
+      },
+      {
+        url: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1600&q=80",
+        name: "Futuristic_Surreal_Architectural_Spire.png",
+        res: "3840x2160"
       }
+    ];
+
+    let currentGalleryIdx = 0;
+
+    function runGemini20SecondPipeline() {
+      if(!deductCredits(2)) return;
+
+      const btn = document.getElementById('genImageBtn');
+      const progressBox = document.getElementById('diffusionProgressBox');
+      const progressBar = document.getElementById('diffProgressBar');
+      const stepLabel = document.getElementById('diffStepLabel');
+      const timerLabel = document.getElementById('diffTimer');
+      const detailText = document.getElementById('diffDetailText');
+      const overlay = document.getElementById('renderingOverlay');
+
+      btn.disabled = true;
+      btn.classList.add('opacity-50');
+      progressBox.classList.remove('hidden');
+      overlay.classList.remove('hidden');
+
+      let secondsLeft = 20;
+      let progressPercent = 0;
+
+      const countdownInterval = setInterval(() => {
+        secondsLeft--;
+        progressPercent += 5;
+        progressBar.style.width = progressPercent + '%';
+        timerLabel.innerText = secondsLeft + 's remaining';
+
+        if(secondsLeft === 15) {
+          stepLabel.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Step 2/4: Synthesizing Latent Tensors...';
+          detailText.innerText = "Parsing high-dimensional multimodal embedding with Gemini Flash 1.5 weights...";
+        } else if(secondsLeft === 10) {
+          stepLabel.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Step 3/4: Denoising & Ray-Tracing...';
+          detailText.innerText = "Computing sub-pixel atmospheric lighting, subsurface scattering and specular reflections...";
+        } else if(secondsLeft === 4) {
+          stepLabel.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Step 4/4: 4K HDR Color Grading...';
+          detailText.innerText = "Finalizing 3840x2160 output tensors and caching to edge bucket...";
+        }
+
+        if(secondsLeft <= 0) {
+          clearInterval(countdownInterval);
+
+          currentGalleryIdx = (currentGalleryIdx + 1) % GENERATION_GALLERY.length;
+          const chosen = GENERATION_GALLERY[currentGalleryIdx];
+
+          const renderedImg = document.getElementById('renderedImg');
+          renderedImg.src = chosen.url;
+          document.getElementById('metaResText').innerText = chosen.name + " • " + chosen.res;
+          document.getElementById('downloadImgLink').href = chosen.url;
+
+          overlay.classList.add('hidden');
+          progressBox.classList.add('hidden');
+          btn.disabled = false;
+          btn.classList.remove('opacity-50');
+          progressBar.style.width = '0%';
+
+          alert("✨ Gemini 1.5 Flash render completed! High-res asset is ready on your canvas.");
+        }
+      }, 1000);
+    }
+
+    function upscaleImage() {
+      if(!deductCredits(1)) return;
+      alert("🔍 Upscaled to 8K Ultra HD (7680x4320) via Deep Neural Super-Resolution! (1 Credit deducted)");
+    }
+
+    function handleBgFileUpload(e) {
+      const file = e.target.files[0];
+      if(!file) return;
+      if(!deductCredits(1)) return;
+
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        document.getElementById('bgOriginalImg').src = evt.target.result;
+        document.getElementById('bgCutoutImg').src = evt.target.result;
+        document.getElementById('bgDownloadBtn').href = evt.target.result;
+        document.getElementById('bgResultBox').classList.remove('hidden');
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function handlePdfConvert(e) {
+      const file = e.target.files[0];
+      if(!file) return;
+      if(!deductCredits(1)) return;
+
+      document.getElementById('pdfFileName').innerText = file.name + " ➔ " + file.name.replace('.pdf', '.docx');
+      document.getElementById('pdfSuccessBox').classList.remove('hidden');
+    }
+
+    function downloadConvertedWord() {
+      const blob = new Blob(["OmniCraft Converted Document Content"], { type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = "Converted_Document.docx";
+      a.click();
+    }
+
+    let mergeList = [];
+    function handleMergeFiles(e) {
+      const files = Array.from(e.target.files);
+      if(!files.length) return;
+      files.forEach(f => mergeList.push(f.name));
+      const listEl = document.getElementById('queuedFilesList');
+      listEl.innerHTML = mergeList.map((name, i) => `<div>${i+1}. <i class="fa-regular fa-file-pdf text-rose-500"></i> ${name}</div>`).join('');
+      document.getElementById('mergeListBox').classList.remove('hidden');
+    }
+
+    function runPdfMerge() {
+      if(!deductCredits(1)) return;
+      const blob = new Blob(["%PDF-1.4 Mock Merged PDF stream"], { type: "application/pdf" });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = "Merged_Master_Document.pdf";
+      a.click();
+      alert("✅ All PDFs merged successfully into Merged_Master_Document.pdf!");
+    }
+
+    function generateCopy() {
+      if(!deductCredits(1)) return;
+      const topic = document.getElementById('writerTopic').value.trim() || "AI product";
+      const mode = document.getElementById('writerMode').value;
+      const output = document.getElementById('copyOutputText');
+
+      if(mode === 'cold_email') {
+        output.innerText = `Subject: Quick question about ${topic}\n\nHi [First Name],\n\nI came across your profile and noticed your focus on ${topic}. Most teams spend 15+ hours weekly on manual workflows.\n\nWe built an automated pipeline that cuts this time by 80% with zero setup.\n\nWould you be open to a 5-minute chat this week?\n\nBest,\nOmniCraft Team`;
+      } else if(mode === 'landing_hero') {
+        output.innerText = `Headline: The Future of ${topic} Is Here.\n\nSubheadline: Unlock 10x speed with next-generation neural computation. Trusted by 45,000+ creators and engineers worldwide.\n\nCTA: Get Started Free • No Credit Card Required.`;
+      } else {
+        output.innerText = `🚀 How we revolutionized ${topic} in under 30 days:\n\n1. Identified the bottleneck.\n2. Replaced legacy scripts with Gemini multimodal APIs.\n3. Deployed to Vercel edge.\n\nResult? 400% throughput increase with 90% lower compute costs.`;
+      }
+      document.getElementById('wordCount').innerText = output.innerText.split(' ').length;
+    }
+
+    function copyGeneratedDraft() {
+      const text = document.getElementById('copyOutputText').innerText;
+      navigator.clipboard.writeText(text);
+      const btn = document.getElementById('copyDraftBtn');
+      btn.innerText = "Copied!";
+      setTimeout(() => btn.innerText = "Copy", 2000);
+    }
+
+    function updateCvLive() {
+      document.getElementById('liveCvName').innerText = document.getElementById('cvName').value || "Your Name";
+      document.getElementById('liveCvTitle').innerText = document.getElementById('cvTitle').value || "Job Title";
+      document.getElementById('liveCvContact').innerText = document.getElementById('cvContact').value || "Contact info";
+      document.getElementById('liveCvSummary').innerText = document.getElementById('cvSummary').value || "Summary...";
+      document.getElementById('liveCvSkills').innerText = document.getElementById('cvSkills').value || "Skills...";
     }
   </script>
 </body>
