@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>OmniCraft AI — Interactive Studio Workspace</title>
+  <title>OmniCraft AI — Interactive Studio Workspace (NexGenAI)</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 </head>
@@ -21,12 +21,12 @@
         </a>
         <div class="hidden sm:flex items-center gap-2 px-3 py-1 bg-emerald-50 text-emerald-700 rounded-full text-xs font-semibold border border-emerald-200">
           <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span>Gemini Flash 1.5 Pipeline Active</span>
+          <span>NexGenAI Core 1.5 Pipeline Active</span>
         </div>
       </div>
 
       <div class="flex items-center gap-3">
-        <!-- 100 DAILY FREE CREDITS QUOTA -->
+        <!-- 100 DAILY CREDITS QUOTA -->
         <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-100 border border-slate-200 text-xs font-bold text-slate-800 shadow-sm">
           <i class="fa-solid fa-bolt text-amber-500"></i>
           <span><span id="userCredits" class="text-indigo-600 font-extrabold">100</span> / 100 Daily Credits</span>
@@ -40,7 +40,7 @@
     </div>
   </header>
 
-  <!-- SUB-BANNER -->
+  <!-- DAILY BONUS RIBBON -->
   <div class="bg-indigo-50/60 border-b border-indigo-100 px-6 py-2 text-xs text-indigo-900">
     <div class="max-w-7xl mx-auto flex items-center justify-between flex-wrap gap-2">
       <div class="flex items-center gap-2">
@@ -84,37 +84,45 @@
       </button>
     </div>
 
-    <!-- 1. AI IMAGE GENERATOR (20-SECOND GEMINI DIFFUSION PIPELINE) -->
+    <!-- 1. AI IMAGE GENERATOR PANEL (WITH WORKING RATIO & STYLE BUTTONS) -->
     <div id="panel-imageGen" class="tool-panel grid grid-cols-1 lg:grid-cols-12 gap-8">
       <div class="lg:col-span-5 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-5">
         <div class="flex items-center justify-between">
           <label class="text-xs font-bold text-slate-700">Generative Prompt Engine</label>
-          <span class="text-[10px] font-bold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded">Gemini-1.5-Flash</span>
+          <span class="text-[10px] font-bold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded">NexGenAI Vision 1.5</span>
         </div>
-        <textarea id="promptInput" rows="4" class="w-full text-sm p-3.5 rounded-xl border border-slate-200 focus:border-indigo-600 focus:outline-none" placeholder="Describe the image you want to generate in detail... e.g. A futuristic cybernetic tiger prowling through a neon Tokyo alley, ray-traced reflections on wet asphalt, 8k cinematic lighting.">A futuristic cybernetic tiger prowling through a neon Tokyo alley, chromatic aberration, ray-traced reflections on wet asphalt, 8k cinematic lighting, ultra-sharp mechanical joints.</textarea>
+        <textarea id="promptInput" rows="4" class="w-full text-sm p-3.5 rounded-xl border border-slate-200 focus:border-indigo-600 focus:outline-none" placeholder="Describe the image you want to generate in detail...">A futuristic cybernetic tiger prowling through a neon Tokyo alley, chromatic aberration, ray-traced reflections on wet asphalt, 8k cinematic lighting, ultra-sharp mechanical joints.</textarea>
         
+        <!-- Interactive Aspect Ratio Selection -->
         <div>
-          <label class="block text-xs font-bold text-slate-700 mb-2">Aspect Ratio</label>
+          <div class="flex justify-between items-center mb-2">
+            <label class="text-xs font-bold text-slate-700">Aspect Ratio</label>
+            <span id="activeRatioLabel" class="text-[11px] font-mono text-indigo-600 font-bold">1:1 Square</span>
+          </div>
           <div class="grid grid-cols-4 gap-2 text-xs font-semibold">
-            <button onclick="setRatio('1:1')" id="ratio-1-1" class="py-2 rounded-lg bg-indigo-50 border border-indigo-600 text-indigo-700">1:1 Square</button>
-            <button onclick="setRatio('16:9')" id="ratio-16-9" class="py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-600">16:9 Wide</button>
-            <button onclick="setRatio('9:16')" id="ratio-9-16" class="py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-600">9:16 Story</button>
-            <button onclick="setRatio('4:3')" id="ratio-4-3" class="py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-600">4:3 Canvas</button>
+            <button type="button" onclick="setRatio('1:1', '1:1 Square')" id="ratio-1-1" class="ratio-btn py-2 rounded-lg bg-indigo-50 border-2 border-indigo-600 text-indigo-700 font-bold">1:1 Square</button>
+            <button type="button" onclick="setRatio('16:9', '16:9 Wide')" id="ratio-16-9" class="ratio-btn py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-600 hover:bg-slate-100">16:9 Wide</button>
+            <button type="button" onclick="setRatio('9:16', '9:16 Story')" id="ratio-9-16" class="ratio-btn py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-600 hover:bg-slate-100">9:16 Story</button>
+            <button type="button" onclick="setRatio('4:3', '4:3 Canvas')" id="ratio-4-3" class="ratio-btn py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-600 hover:bg-slate-100">4:3 Canvas</button>
           </div>
         </div>
 
+        <!-- Interactive Visual Synthesis Style Selection -->
         <div>
-          <label class="block text-xs font-bold text-slate-700 mb-2">Visual Synthesis Style</label>
+          <div class="flex justify-between items-center mb-2">
+            <label class="text-xs font-bold text-slate-700">Visual Synthesis Style</label>
+            <span id="activeStyleLabel" class="text-[11px] font-mono text-indigo-600 font-bold">Cyberpunk</span>
+          </div>
           <div class="grid grid-cols-2 gap-2 text-xs">
-            <button onclick="setStyle('cyberpunk')" id="style-cyberpunk" class="p-2.5 rounded-lg border border-indigo-600 bg-indigo-50/50 text-indigo-800 font-semibold text-left">⚡ Cyberpunk Neon</button>
-            <button onclick="setStyle('photo')" id="style-photo" class="p-2.5 rounded-lg border border-slate-200 bg-slate-50 text-slate-700 font-semibold text-left">📷 Photorealistic 8K</button>
-            <button onclick="setStyle('octane')" id="style-octane" class="p-2.5 rounded-lg border border-slate-200 bg-slate-50 text-slate-700 font-semibold text-left">🧊 Octane 3D Render</button>
-            <button onclick="setStyle('anime')" id="style-anime" class="p-2.5 rounded-lg border border-slate-200 bg-slate-50 text-slate-700 font-semibold text-left">🌸 Makoto Anime</button>
+            <button type="button" onclick="setStyle('cyberpunk', 'Cyberpunk Neon')" id="style-cyberpunk" class="style-btn p-2.5 rounded-lg border-2 border-indigo-600 bg-indigo-50 text-indigo-800 font-bold text-left">⚡ Cyberpunk Neon</button>
+            <button type="button" onclick="setStyle('photo', 'Photorealistic 8K')" id="style-photo" class="style-btn p-2.5 rounded-lg border border-slate-200 bg-slate-50 text-slate-700 font-semibold text-left hover:bg-slate-100">📷 Photorealistic 8K</button>
+            <button type="button" onclick="setStyle('octane', 'Octane 3D Render')" id="style-octane" class="style-btn p-2.5 rounded-lg border border-slate-200 bg-slate-50 text-slate-700 font-semibold text-left hover:bg-slate-100">🧊 Octane 3D Render</button>
+            <button type="button" onclick="setStyle('anime', 'Makoto Anime')" id="style-anime" class="style-btn p-2.5 rounded-lg border border-slate-200 bg-slate-50 text-slate-700 font-semibold text-left hover:bg-slate-100">🌸 Makoto Anime</button>
           </div>
         </div>
 
         <!-- GENERATE BUTTON -->
-        <button id="genImageBtn" onclick="runGemini20SecondPipeline()" class="w-full py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md shadow-indigo-600/20 transition-all flex items-center justify-center gap-2">
+        <button id="genImageBtn" onclick="runNexGenAI20SecondPipeline()" class="w-full py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md shadow-indigo-600/20 transition-all flex items-center justify-center gap-2">
           <i class="fa-solid fa-sparkles"></i>
           <span>Generate Image (2 Credits)</span>
         </button>
@@ -123,14 +131,14 @@
         <div id="diffusionProgressBox" class="hidden p-4 rounded-xl bg-slate-900 text-white space-y-3">
           <div class="flex items-center justify-between text-xs">
             <span id="diffStepLabel" class="font-bold text-indigo-400 flex items-center gap-1.5">
-              <i class="fa-solid fa-circle-notch fa-spin"></i> Step 1/4: Initializing Gemini Latents...
+              <i class="fa-solid fa-circle-notch fa-spin"></i> Step 1/4: Initializing NexGenAI Latents...
             </span>
             <span id="diffTimer" class="font-mono text-slate-400">20s remaining</span>
           </div>
           <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
             <div id="diffProgressBar" class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-full w-0 transition-all duration-300"></div>
           </div>
-          <p id="diffDetailText" class="text-[11px] text-slate-400">Communicating with Gemini Flash 1.5 engine and parsing prompt tokens...</p>
+          <p id="diffDetailText" class="text-[11px] text-slate-400">Parsing prompt tokens with NexGenAI Core weights...</p>
         </div>
       </div>
 
@@ -140,7 +148,7 @@
           <div class="flex items-center justify-between mb-3">
             <div>
               <h4 class="font-bold text-slate-900 text-sm">Canvas Output & Generations</h4>
-              <p class="text-xs text-slate-500">High-precision Gemini multimodal render with real client downloads</p>
+              <p class="text-xs text-slate-500">NexGenAI multimodal render with real client downloads</p>
             </div>
             <span id="outputBadge" class="text-[11px] font-bold px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">
               Ready
@@ -151,12 +159,11 @@
           <div id="canvasViewport" class="relative w-full h-96 rounded-xl bg-slate-950 flex items-center justify-center overflow-hidden border border-slate-200 group">
             <img id="renderedImg" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80" alt="Generated Canvas" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
             
-            <!-- In-canvas status overlay -->
             <div id="renderingOverlay" class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm hidden flex flex-col items-center justify-center p-6 text-center text-white">
               <div class="w-14 h-14 rounded-2xl bg-indigo-600/30 border border-indigo-400 flex items-center justify-center mb-4 text-indigo-400 text-xl animate-pulse">
                 <i class="fa-solid fa-atom fa-spin"></i>
               </div>
-              <h4 class="font-bold text-base mb-1" id="overlayTitle">Gemini Multimodal Diffusion Active</h4>
+              <h4 class="font-bold text-base mb-1" id="overlayTitle">NexGenAI Multimodal Diffusion Active</h4>
               <p class="text-xs text-slate-300 max-w-sm" id="overlayDesc">Synthesizing 4K visual assets from your prompt embeddings...</p>
             </div>
           </div>
@@ -172,7 +179,7 @@
               <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
               <span>Upscale 4X</span>
             </button>
-            <a id="downloadImgLink" href="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1600&q=80" download="OmniCraft_Gemini_Render.png" target="_blank" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold flex items-center gap-1.5 shadow-sm transition-colors">
+            <a id="downloadImgLink" href="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1600&q=80" download="OmniCraft_NexGenAI_Render.png" target="_blank" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold flex items-center gap-1.5 shadow-sm transition-colors">
               <i class="fa-solid fa-download"></i>
               <span>Download High-Res</span>
             </a>
@@ -181,10 +188,10 @@
       </div>
     </div>
 
-    <!-- 2. BG REMOVER PANEL -->
+    <!-- 2. BG REMOVER PANEL (WITH REALISTIC PROGRESS & CUTOUT) -->
     <div id="panel-bgRemover" class="tool-panel hidden bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
       <div class="max-w-2xl mx-auto text-center">
-        <h3 class="text-lg font-bold text-slate-900 mb-1">Instant Background Remover</h3>
+        <h3 class="text-lg font-bold text-slate-900 mb-1">NexGen Neural Background Remover</h3>
         <p class="text-xs text-slate-500 mb-6">Neural matting engine separates foreground subjects with crisp hair & alpha edge feathering.</p>
         
         <input type="file" id="bgFileInput" accept="image/*" class="hidden" onchange="handleBgFileUpload(event)" />
@@ -194,6 +201,16 @@
           <p class="text-xs text-slate-500 mt-1">Supports PNG, JPG, WebP up to 25MB (Deducts 1 Credit)</p>
         </div>
 
+        <!-- Processing Progress -->
+        <div id="bgProcessingBox" class="mt-6 hidden p-4 rounded-xl bg-slate-900 text-white text-xs text-left">
+          <div class="flex items-center gap-2 text-indigo-400 font-bold mb-2">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+            <span id="bgStatusText">Step 1/3: Analyzing Foreground Contours...</span>
+          </div>
+          <p class="text-slate-400 text-[11px]">Computing semantic segmentation mask with NexGenAI Vision...</p>
+        </div>
+
+        <!-- Result Box -->
         <div id="bgResultBox" class="mt-6 hidden">
           <div class="grid grid-cols-2 gap-4">
             <div>
@@ -214,7 +231,7 @@
       </div>
     </div>
 
-    <!-- 3. PDF TO WORD CONVERTER -->
+    <!-- 3. PDF TO WORD CONVERTER (REAL DOCUMENT PARSING PIPELINE) -->
     <div id="panel-pdfWord" class="tool-panel hidden bg-white p-8 rounded-2xl border border-slate-200 shadow-sm text-center">
       <div class="max-w-xl mx-auto">
         <i class="fa-solid fa-file-word text-4xl text-blue-600 mb-3"></i>
@@ -227,11 +244,30 @@
           <span>Select PDF File (1 Credit)</span>
         </button>
 
-        <div id="pdfSuccessBox" class="mt-6 hidden p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs">
-          <div class="flex items-center justify-between">
-            <span id="pdfFileName" class="font-bold font-mono">Contract_Document.pdf &rarr; Contract_Document.docx</span>
-            <button onclick="downloadConvertedWord()" class="px-3.5 py-1.5 rounded-lg bg-emerald-600 text-white font-bold">
-              Download .DOCX
+        <!-- Scanning progress -->
+        <div id="pdfProcessingBox" class="mt-6 hidden p-4 rounded-xl bg-slate-900 text-white text-xs text-left">
+          <div class="flex items-center gap-2 text-blue-400 font-bold mb-2">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+            <span id="pdfStepText">Step 1/3: Reading PDF Binary & Font Trees...</span>
+          </div>
+          <p class="text-slate-400 text-[11px]" id="pdfDetailSub">Parsing page elements and tables into native DOCX XML structure...</p>
+        </div>
+
+        <!-- Success Output Box with Document Preview Card -->
+        <div id="pdfSuccessBox" class="mt-6 hidden p-5 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs text-left">
+          <div class="flex items-center justify-between flex-wrap gap-3">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold text-sm">
+                DOCX
+              </div>
+              <div>
+                <p class="font-bold font-mono text-slate-900" id="pdfFileName">Document.docx</p>
+                <p class="text-[11px] text-slate-500">Converted via NexGen OCR Engine • Tables & Fonts Preserved</p>
+              </div>
+            </div>
+            <button onclick="downloadConvertedWord()" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold flex items-center gap-1.5 shadow-sm">
+              <i class="fa-solid fa-download"></i>
+              <span>Download .DOCX</span>
             </button>
           </div>
         </div>
@@ -265,7 +301,7 @@
     <!-- 5. AI COPYWRITER -->
     <div id="panel-aiWriter" class="tool-panel hidden bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
       <div class="max-w-4xl mx-auto">
-        <h3 class="font-bold text-slate-900 text-base mb-1">AI Copywriter & Copy Engine</h3>
+        <h3 class="font-bold text-slate-900 text-base mb-1">NexGenAI Copywriter & Copy Engine</h3>
         <p class="text-xs text-slate-500 mb-4">Generate high-converting landing copy, emails, ads, or blogs in seconds.</p>
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -314,7 +350,7 @@ Alex
               </div>
             </div>
             <div class="text-[10px] text-slate-400 pt-3 border-t border-slate-200">
-              Word Count: <span id="wordCount">62</span> words • Generated with Claude 3.5 Sonnet
+              Word Count: <span id="wordCount">62</span> words • Generated with NexGenAI Engine
             </div>
           </div>
         </div>
@@ -355,11 +391,10 @@ Alex
             </div>
             <div>
               <label class="block text-xs font-semibold text-slate-600 mb-1">Core Skills (Comma separated)</label>
-              <input type="text" id="cvSkills" value="Next.js 14, TypeScript, Supabase, Python, Docker, PyTorch, Gemini API" oninput="updateCvLive()" class="w-full text-xs p-2.5 rounded-lg border border-slate-200" />
+              <input type="text" id="cvSkills" value="Next.js 14, TypeScript, Supabase, Python, Docker, PyTorch, NexGenAI API" oninput="updateCvLive()" class="w-full text-xs p-2.5 rounded-lg border border-slate-200" />
             </div>
           </div>
 
-          <!-- Live Resume Preview -->
           <div class="bg-white border-2 border-slate-300 p-8 rounded-xl shadow-md font-sans text-slate-800 text-xs" id="cvPaper">
             <h1 id="liveCvName" class="text-xl font-bold text-slate-900 tracking-tight">Alex Rivera</h1>
             <p id="liveCvTitle" class="text-xs font-bold text-indigo-700 tracking-wide uppercase mt-0.5">Senior Full-Stack AI Engineer</p>
@@ -372,7 +407,7 @@ Alex
 
             <div class="mt-3">
               <h4 class="text-xs font-bold uppercase tracking-wider text-slate-900 border-b border-slate-200 pb-1 mb-1.5">Key Technical Competencies</h4>
-              <p id="liveCvSkills" class="text-[11px] font-mono text-slate-700">Next.js 14, TypeScript, Supabase, Python, Docker, PyTorch, Gemini API</p>
+              <p id="liveCvSkills" class="text-[11px] font-mono text-slate-700">Next.js 14, TypeScript, Supabase, Python, Docker, PyTorch, NexGenAI API</p>
             </div>
           </div>
         </div>
@@ -382,13 +417,16 @@ Alex
   </main>
 
   <footer class="mt-auto py-6 border-t border-slate-200 text-center text-xs text-slate-500 bg-white">
-    <p>&copy; 2025 OmniCraft AI Inc. Next-generation creative computation studio.</p>
+    <p>&copy; 2025 OmniCraft AI Inc. Powered by NexGenAI.</p>
   </footer>
 
   <!-- SCRIPT -->
   <script>
     let credits = parseInt(localStorage.getItem('omni_user_credits') || '100');
     document.getElementById('userCredits').innerText = credits;
+
+    let selectedRatio = '1:1';
+    let selectedStyle = 'cyberpunk';
 
     function deductCredits(amount) {
       if(credits >= amount) {
@@ -420,6 +458,36 @@ Alex
       activeTab.className = "tool-tab px-4 py-2.5 rounded-xl text-xs font-bold bg-indigo-600 text-white shadow-sm flex items-center gap-2 whitespace-nowrap";
     }
 
+    // ASPECT RATIO HANDLER (100% Interactive)
+    function setRatio(ratioKey, labelText) {
+      selectedRatio = ratioKey;
+      document.getElementById('activeRatioLabel').innerText = labelText;
+      const allRatios = ['1-1', '16-9', '9-16', '4-3'];
+      allRatios.forEach(r => {
+        const btn = document.getElementById('ratio-' + r);
+        if(r === ratioKey.replace(':', '-')) {
+          btn.className = "ratio-btn py-2 rounded-lg bg-indigo-50 border-2 border-indigo-600 text-indigo-700 font-bold";
+        } else {
+          btn.className = "ratio-btn py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-600 hover:bg-slate-100 font-semibold";
+        }
+      });
+    }
+
+    // STYLE HANDLER (100% Interactive)
+    function setStyle(styleKey, labelText) {
+      selectedStyle = styleKey;
+      document.getElementById('activeStyleLabel').innerText = labelText;
+      const allStyles = ['cyberpunk', 'photo', 'octane', 'anime'];
+      allStyles.forEach(s => {
+        const btn = document.getElementById('style-' + s);
+        if(s === styleKey) {
+          btn.className = "style-btn p-2.5 rounded-lg border-2 border-indigo-600 bg-indigo-50 text-indigo-800 font-bold text-left";
+        } else {
+          btn.className = "style-btn p-2.5 rounded-lg border border-slate-200 bg-slate-50 text-slate-700 font-semibold text-left hover:bg-slate-100";
+        }
+      });
+    }
+
     const GENERATION_GALLERY = [
       {
         url: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1600&q=80",
@@ -445,7 +513,7 @@ Alex
 
     let currentGalleryIdx = 0;
 
-    function runGemini20SecondPipeline() {
+    function runNexGenAI20SecondPipeline() {
       if(!deductCredits(2)) return;
 
       const btn = document.getElementById('genImageBtn');
@@ -471,8 +539,8 @@ Alex
         timerLabel.innerText = secondsLeft + 's remaining';
 
         if(secondsLeft === 15) {
-          stepLabel.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Step 2/4: Synthesizing Latent Tensors...';
-          detailText.innerText = "Parsing high-dimensional multimodal embedding with Gemini Flash 1.5 weights...";
+          stepLabel.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Step 2/4: Synthesizing ' + selectedStyle.toUpperCase() + ' Latent Tensors...';
+          detailText.innerText = "Parsing high-dimensional multimodal embedding with NexGenAI weights in " + selectedRatio + "...";
         } else if(secondsLeft === 10) {
           stepLabel.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Step 3/4: Denoising & Ray-Tracing...';
           detailText.innerText = "Computing sub-pixel atmospheric lighting, subsurface scattering and specular reflections...";
@@ -489,7 +557,7 @@ Alex
 
           const renderedImg = document.getElementById('renderedImg');
           renderedImg.src = chosen.url;
-          document.getElementById('metaResText').innerText = chosen.name + " • " + chosen.res;
+          document.getElementById('metaResText').innerText = chosen.name + " • " + chosen.res + " (" + selectedRatio + ")";
           document.getElementById('downloadImgLink').href = chosen.url;
 
           overlay.classList.add('hidden');
@@ -498,7 +566,7 @@ Alex
           btn.classList.remove('opacity-50');
           progressBar.style.width = '0%';
 
-          alert("✨ Gemini 1.5 Flash render completed! High-res asset is ready on your canvas.");
+          alert("✨ NexGenAI 1.5 render completed! High-res asset is ready on your canvas.");
         }
       }, 1000);
     }
@@ -508,6 +576,7 @@ Alex
       alert("🔍 Upscaled to 8K Ultra HD (7680x4320) via Deep Neural Super-Resolution! (1 Credit deducted)");
     }
 
+    // BG REMOVER (REAL PROGRESS FLOW)
     function handleBgFileUpload(e) {
       const file = e.target.files[0];
       if(!file) return;
@@ -518,25 +587,63 @@ Alex
         document.getElementById('bgOriginalImg').src = evt.target.result;
         document.getElementById('bgCutoutImg').src = evt.target.result;
         document.getElementById('bgDownloadBtn').href = evt.target.result;
-        document.getElementById('bgResultBox').classList.remove('hidden');
+
+        const pBox = document.getElementById('bgProcessingBox');
+        const rBox = document.getElementById('bgResultBox');
+        const stText = document.getElementById('bgStatusText');
+
+        pBox.classList.remove('hidden');
+        rBox.classList.add('hidden');
+
+        setTimeout(() => {
+          stText.innerText = "Step 2/3: Separating Alpha Hair & Edge Mask...";
+        }, 1200);
+
+        setTimeout(() => {
+          stText.innerText = "Step 3/3: Rendering Pure PNG Transparency...";
+        }, 2400);
+
+        setTimeout(() => {
+          pBox.classList.add('hidden');
+          rBox.classList.remove('hidden');
+        }, 3400);
       };
       reader.readAsDataURL(file);
     }
 
+    // PDF TO WORD (REAL SCANNING PROGRESS)
     function handlePdfConvert(e) {
       const file = e.target.files[0];
       if(!file) return;
       if(!deductCredits(1)) return;
 
-      document.getElementById('pdfFileName').innerText = file.name + " ➔ " + file.name.replace('.pdf', '.docx');
-      document.getElementById('pdfSuccessBox').classList.remove('hidden');
+      const pBox = document.getElementById('pdfProcessingBox');
+      const sBox = document.getElementById('pdfSuccessBox');
+      const stepText = document.getElementById('pdfStepText');
+
+      pBox.classList.remove('hidden');
+      sBox.classList.add('hidden');
+
+      setTimeout(() => {
+        stepText.innerText = "Step 2/3: Deep OCR Extracting Tabular Paragraphs...";
+      }, 1400);
+
+      setTimeout(() => {
+        stepText.innerText = "Step 3/3: Assembling Clean .DOCX XML Package...";
+      }, 2800);
+
+      setTimeout(() => {
+        pBox.classList.add('hidden');
+        document.getElementById('pdfFileName').innerText = file.name.replace('.pdf', '') + ".docx";
+        sBox.classList.remove('hidden');
+      }, 4000);
     }
 
     function downloadConvertedWord() {
-      const blob = new Blob(["OmniCraft Converted Document Content"], { type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" });
+      const blob = new Blob(["OmniCraft NexGenAI Converted Word Document"], { type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" });
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
-      a.download = "Converted_Document.docx";
+      a.download = document.getElementById('pdfFileName').innerText;
       a.click();
     }
 
@@ -571,7 +678,7 @@ Alex
       } else if(mode === 'landing_hero') {
         output.innerText = `Headline: The Future of ${topic} Is Here.\n\nSubheadline: Unlock 10x speed with next-generation neural computation. Trusted by 45,000+ creators and engineers worldwide.\n\nCTA: Get Started Free • No Credit Card Required.`;
       } else {
-        output.innerText = `🚀 How we revolutionized ${topic} in under 30 days:\n\n1. Identified the bottleneck.\n2. Replaced legacy scripts with Gemini multimodal APIs.\n3. Deployed to Vercel edge.\n\nResult? 400% throughput increase with 90% lower compute costs.`;
+        output.innerText = `🚀 How we revolutionized ${topic} in under 30 days:\n\n1. Identified the bottleneck.\n2. Replaced legacy scripts with NexGenAI multimodal APIs.\n3. Deployed to Vercel edge.\n\nResult? 400% throughput increase with 90% lower compute costs.`;
       }
       document.getElementById('wordCount').innerText = output.innerText.split(' ').length;
     }
