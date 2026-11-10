@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OmniCraft AI — Interactive Studio Workspace</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col font-sans">
+
+  <!-- TOP HEADER -->
+  <header class="sticky top-0 z-40 bg-white border-b border-slate-200 px-6 py-3.5">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-6">
+        <a href="/" class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-xl bg-indigo-600 flex items-center justify-center text-white">
+            <i class="fa-solid fa-wand-magic-sparkles text-xs"></i>
+          </div>
+          <span class="text-lg font-bold text-slate-900">OmniCraft <span class="text-indigo-600">AI</span></span>
+        </a>
+        <div class="hidden sm:flex items-center gap-2 px-3 py-1 bg-emerald-50 text-emerald-700 rounded-full text-xs font-semibold border border-emerald-200">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span>Multi-Engine Active</span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <div class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-100 border border-slate-200 text-xs font-bold text-slate-700">
+          <i class="fa-solid fa-bolt text-amber-500"></i>
+          <span><span id="userCredits">250</span> / 500 Credits</span>
+        </div>
+        <a href="/#pricing" class="px-3.5 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold transition-colors">
+          Upgrade Tier
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN TOOLS CONTAINER -->
+  <main class="max-w-7xl mx-auto px-6 py-8 flex-1 w-full">
+    
+    <!-- TOOL SWITCHER TABS -->
+    <div class="flex items-center gap-2 overflow-x-auto pb-4 mb-6 border-b border-slate-200">
+      <button onclick="switchTool('imageGen')" id="tab-imageGen" class="tool-tab px-4 py-2 rounded-xl text-xs font-bold bg-indigo-600 text-white shadow-sm flex items-center gap-2">
+        <i class="fa-solid fa-image"></i>
+        <span>AI Image Generator</span>
+      </button>
+      <button onclick="switchTool('bgRemover')" id="tab-bgRemover" class="tool-tab px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 flex items-center gap-2">
+        <i class="fa-solid fa-scissors"></i>
+        <span>Background Remover</span>
+      </button>
+      <button onclick="switchTool('pdfWord')" id="tab-pdfWord" class="tool-tab px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 flex items-center gap-2">
+        <i class="fa-regular fa-file-word"></i>
+        <span>PDF to Word</span>
+      </button>
+      <button onclick="switchTool('pdfMerge')" id="tab-pdfMerge" class="tool-tab px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 flex items-center gap-2">
+        <i class="fa-solid fa-layer-group"></i>
+        <span>PDF Merge</span>
+      </button>
+      <button onclick="switchTool('aiWriter')" id="tab-aiWriter" class="tool-tab px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 flex items-center gap-2">
+        <i class="fa-solid fa-pen-nib"></i>
+        <span>AI Copywriter</span>
+      </button>
+      <button onclick="switchTool('cvMaker')" id="tab-cvMaker" class="tool-tab px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 flex items-center gap-2">
+        <i class="fa-solid fa-briefcase"></i>
+        <span>CV / Resume Maker</span>
+      </button>
+    </div>
+
+    <!-- 1. AI IMAGE GENERATOR PANEL -->
+    <div id="panel-imageGen" class="tool-panel grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div class="lg:col-span-5 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-5">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Prompt Engine</label>
+          <textarea id="promptInput" rows="4" class="w-full text-sm p-3.5 rounded-xl border border-slate-200 focus:border-indigo-600 focus:outline-none" placeholder="Describe what you want to create..."></textarea>
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-2">Aspect Ratio</label>
+          <div class="grid grid-cols-4 gap-2 text-xs font-semibold">
+            <button class="py-2 rounded-lg bg-indigo-50 border border-indigo-600 text-indigo-700">1:1 Square</button>
+            <button class="py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-600">16:9 Wide</button>
+            <button class="py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-600">9:16 Story</button>
+            <button class="py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-600">4:3 Doc</button>
+          </div>
+        </div>
+        <button onclick="generateSampleImage()" class="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md shadow-indigo-600/20 transition-all flex items-center justify-center gap-2">
+          <i class="fa-solid fa-sparkles"></i>
+          <span>Generate Image (2 Credits)</span>
+        </button>
+      </div>
+
+      <div class="lg:col-span-7 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col items-center justify-center text-center">
+        <div id="imageDisplayArea" class="w-full h-80 rounded-xl bg-slate-100 flex items-center justify-center overflow-hidden border border-slate-200">
+          <img id="renderedImg" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1000&q=80" alt="Generated" class="w-full h-full object-cover" />
+        </div>
+        <div class="mt-4 flex items-center justify-between w-full">
+          <span class="text-xs text-slate-500 font-mono">Status: Ready (3840x2160)</span>
+          <a id="downloadBtn" href="#" class="px-4 py-2 rounded-xl bg-slate-900 hover:bg-black text-white text-xs font-bold flex items-center gap-1.5">
+            <i class="fa-solid fa-download"></i>
+            <span>Download High-Res</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. BG REMOVER PANEL (Hidden by default) -->
+    <div id="panel-bgRemover" class="tool-panel hidden bg-white p-8 rounded-2xl border border-slate-200 shadow-sm text-center">
+      <div class="max-w-md mx-auto border-2 border-dashed border-slate-300 p-8 rounded-2xl hover:border-indigo-600 cursor-pointer">
+        <i class="fa-solid fa-cloud-arrow-up text-3xl text-indigo-600 mb-3"></i>
+        <h4 class="font-bold text-slate-800 text-base">Drop your photo here to remove background</h4>
+        <p class="text-xs text-slate-500 mt-1">Supports PNG, JPG, WebP up to 25MB</p>
+        <button class="mt-4 px-4 py-2 rounded-xl bg-indigo-600 text-white text-xs font-bold">Select File</button>
+      </div>
+    </div>
+
+    <!-- 3. PDF TO WORD (Hidden) -->
+    <div id="panel-pdfWord" class="tool-panel hidden bg-white p-8 rounded-2xl border border-slate-200 shadow-sm text-center">
+      <div class="max-w-md mx-auto border-2 border-dashed border-slate-300 p-8 rounded-2xl hover:border-indigo-600 cursor-pointer">
+        <i class="fa-solid fa-file-pdf text-3xl text-rose-500 mb-3"></i>
+        <h4 class="font-bold text-slate-800 text-base">Select PDF to convert into editable Word (.DOCX)</h4>
+        <p class="text-xs text-slate-500 mt-1">Deep OCR keeps formatting, tables, and fonts intact</p>
+        <button class="mt-4 px-4 py-2 rounded-xl bg-rose-600 text-white text-xs font-bold">Upload PDF</button>
+      </div>
+    </div>
+
+    <!-- 4. PDF MERGE (Hidden) -->
+    <div id="panel-pdfMerge" class="tool-panel hidden bg-white p-8 rounded-2xl border border-slate-200 shadow-sm text-center">
+      <div class="max-w-md mx-auto border-2 border-dashed border-slate-300 p-8 rounded-2xl hover:border-indigo-600 cursor-pointer">
+        <i class="fa-solid fa-layer-group text-3xl text-amber-500 mb-3"></i>
+        <h4 class="font-bold text-slate-800 text-base">Combine multiple PDF files into one</h4>
+        <p class="text-xs text-slate-500 mt-1">Drag and reorder pages effortlessly</p>
+        <button class="mt-4 px-4 py-2 rounded-xl bg-amber-600 text-white text-xs font-bold">Select Multiple PDFs</button>
+      </div>
+    </div>
+
+    <!-- 5. AI WRITER (Hidden) -->
+    <div id="panel-aiWriter" class="tool-panel hidden bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+      <h3 class="font-bold text-slate-900 mb-3">AI Copywriter & Content Engine</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 mb-1">What would you like to write?</label>
+          <input type="text" placeholder="e.g. Cold outreach email to real estate clients" class="w-full text-xs p-3 rounded-xl border border-slate-200 mb-3" />
+          <button class="w-full py-2.5 rounded-xl bg-indigo-600 text-white text-xs font-bold">Generate Draft</button>
+        </div>
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 font-mono text-xs text-slate-700">
+          Preview of AI generated text will show here...
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. CV / RESUME MAKER (Hidden) -->
+    <div id="panel-cvMaker" class="tool-panel hidden bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+      <h3 class="font-bold text-slate-900 mb-2">ATS-Optimized Resume Creator</h3>
+      <p class="text-xs text-slate-500 mb-4">Live side-by-side editing with direct PDF export.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="space-y-3">
+          <input type="text" placeholder="Full Name" class="w-full text-xs p-2.5 rounded-lg border border-slate-200" />
+          <input type="text" placeholder="Target Job Title (e.g. Senior Software Engineer)" class="w-full text-xs p-2.5 rounded-lg border border-slate-200" />
+          <textarea rows="3" placeholder="Summary" class="w-full text-xs p-2.5 rounded-lg border border-slate-200"></textarea>
+          <button class="px-4 py-2 bg-slate-900 text-white text-xs font-bold rounded-lg">Export ATS PDF</button>
+        </div>
+        <div class="bg-white border border-slate-300 p-6 rounded-lg shadow-sm text-xs">
+          <h2 class="text-base font-bold text-slate-900">John Doe</h2>
+          <p class="text-indigo-600 font-medium">Senior Software Engineer</p>
+          <hr class="my-2" />
+          <p class="text-slate-600">Dynamic preview updates here as you type...</p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    function switchTool(toolKey) {
+      document.querySelectorAll('.tool-panel').forEach(p => p.classList.add('hidden'));
+      document.querySelectorAll('.tool-tab').forEach(t => {
+        t.className = "tool-tab px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 flex items-center gap-2";
+      });
+
+      document.getElementById('panel-' + toolKey).classList.remove('hidden');
+      const activeTab = document.getElementById('tab-' + toolKey);
+      activeTab.className = "tool-tab px-4 py-2 rounded-xl text-xs font-bold bg-indigo-600 text-white shadow-sm flex items-center gap-2";
+    }
+
+    function generateSampleImage() {
+      const cr = document.getElementById('userCredits');
+      let val = parseInt(cr.innerText);
+      if(val >= 2) {
+        cr.innerText = val - 2;
+        alert("✨ Generated successfully! 2 Credits deducted.");
+      }
+    }
+  </script>
+</body>
+</html>
