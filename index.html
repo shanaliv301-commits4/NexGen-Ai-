@@ -3,10 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>OmniCraft AI — All-in-One AI & Document Creation Studio</title>
-  <!-- Tailwind CSS CDN -->
+  <title>OmniCraft AI — Next-Gen AI & Document Studio</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <script>
     tailwind.config = {
@@ -23,7 +21,7 @@
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col font-sans transition-colors duration-300" id="bodyRoot">
 
-  <!-- TOP NAVIGATION BAR -->
+  <!-- TOP HEADER -->
   <header class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-slate-200 px-6 py-3.5 transition-colors">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
       <div class="flex items-center gap-8">
@@ -41,11 +39,16 @@
       </div>
 
       <div class="flex items-center gap-3">
-        <!-- Theme Toggle -->
+        <!-- Daily 100 Free Credits Badge -->
+        <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-indigo-50 border border-indigo-200/60 text-xs font-bold text-indigo-700">
+          <i class="fa-solid fa-bolt text-amber-500"></i>
+          <span>100 / 100 Free Daily Credits</span>
+        </div>
+        <!-- Theme Switcher -->
         <button onclick="toggleTheme()" class="w-9 h-9 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100 flex items-center justify-center transition-colors">
           <i id="themeIcon" class="fa-regular fa-sun text-sm"></i>
         </button>
-        <!-- Launch App CTA -->
+        <!-- Open Studio CTA -->
         <a href="/app" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold shadow-sm transition-all flex items-center gap-2">
           <span>Launch Studio Free</span>
           <i class="fa-solid fa-arrow-right text-xs"></i>
@@ -56,9 +59,9 @@
 
   <!-- HERO SECTION -->
   <section class="py-20 px-6 max-w-5xl mx-auto text-center">
-    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-50 border border-indigo-200/60 text-indigo-700 text-xs font-semibold mb-6">
+    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-semibold mb-6">
       <i class="fa-solid fa-sparkles text-indigo-500"></i>
-      <span>6 AI & Document Tools in One Place — From Just $5/month</span>
+      <span>6 AI & Document Tools in One Place — 100 Daily Credits Free</span>
     </div>
     <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight">
       Create, Edit, Convert & Build <br />
@@ -108,7 +111,7 @@
             </ul>
           </div>
           <button onclick="openCryptoModal('Starter', 5, 100)" class="mt-8 w-full py-2.5 rounded-xl bg-slate-900 hover:bg-black text-white font-semibold text-sm transition-all shadow-sm">
-            Subscribe for $5
+            Subscribe with Crypto ($5)
           </button>
         </div>
 
@@ -129,14 +132,14 @@
             </div>
             <ul class="mt-6 space-y-3 text-sm text-slate-600">
               <li class="flex items-center gap-2 font-medium text-slate-900"><i class="fa-solid fa-check text-indigo-600 text-xs"></i> 600 AI credits / month</li>
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigo-600 text-xs"></i> HD Image Gen & Refinement</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigo-600 text-xs"></i> HD Gemini Image Gen & Refine</li>
               <li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigo-600 text-xs"></i> Unlimited Background Removal</li>
               <li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigo-600 text-xs"></i> Advanced AI Copywriter</li>
               <li class="flex items-center gap-2"><i class="fa-solid fa-check text-indigo-600 text-xs"></i> 5 Premium ATS CV Templates</li>
             </ul>
           </div>
           <button onclick="openCryptoModal('Creator', 19, 600)" class="mt-8 w-full py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm transition-all shadow-md shadow-indigo-600/25">
-            Subscribe for $19
+            Subscribe with Crypto ($19)
           </button>
         </div>
 
@@ -160,7 +163,7 @@
             </ul>
           </div>
           <button onclick="openCryptoModal('Pro Studio', 49, 2000)" class="mt-8 w-full py-2.5 rounded-xl bg-slate-900 hover:bg-black text-white font-semibold text-sm transition-all shadow-sm">
-            Subscribe for $49
+            Subscribe with Crypto ($49)
           </button>
         </div>
 
@@ -184,7 +187,7 @@
             </ul>
           </div>
           <button onclick="openCryptoModal('Enterprise Max', 100, 5000)" class="mt-8 w-full py-2.5 rounded-xl bg-slate-900 hover:bg-black text-white font-semibold text-sm transition-all shadow-sm">
-            Subscribe for $100
+            Subscribe with Crypto ($100)
           </button>
         </div>
 
@@ -194,7 +197,7 @@
 
   <!-- CRYPTO PAYMENT & AUTOMATED VERIFICATION MODAL -->
   <div id="cryptoModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-200 relative animate-in fade-in zoom-in duration-200">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-200 relative">
       
       <!-- Close Button -->
       <button onclick="closeCryptoModal()" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center">
@@ -349,7 +352,7 @@
 
       setTimeout(() => {
         title.innerText = "Step 3/3: Payment Verified! Activating Plan...";
-        msg.innerText = "Assigning " + currentPlan.credits + " credits to your Supabase account...";
+        msg.innerText = "Assigning " + currentPlan.credits + " credits to your account...";
       }, 3200);
 
       setTimeout(() => {
@@ -361,8 +364,9 @@
           </div>
           <p class="text-emerald-100 text-[11px]">Your <strong>${currentPlan.name}</strong> subscription ($${currentPlan.price}/mo) has been activated. Redirecting to your Studio Workspace...</p>
         `;
+        localStorage.setItem('omni_user_credits', (100 + currentPlan.credits).toString());
         setTimeout(() => {
-          window.location.href = '/app?subscribed=' + currentPlan.name.toLowerCase();
+          window.location.href = '/app?subscribed=' + encodeURIComponent(currentPlan.name);
         }, 1800);
       }, 4500);
     }
